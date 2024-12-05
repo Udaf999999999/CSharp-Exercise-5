@@ -2,7 +2,7 @@
 {
     internal class Program
     {
-        static string ShowColor(string username, int userage)
+        static string GetColor(string username, int userage)
         {
             Console.WriteLine("{0}, {1} лет\nНапишите свой любимый цвет", username, userage);
             var color = Console.ReadLine();
@@ -36,6 +36,14 @@
                     break;
             }
             return color;
+        }
+        static void ShowColors(params string[] favcolors)
+        {
+            Console.WriteLine("Ваши любимые цвета:");
+            foreach (var color in favcolors)
+            {
+                Console.WriteLine(color);
+            }
         }
         static int[] GetArrayFromConsole()
         {
@@ -100,8 +108,9 @@
 
             for (int i = 0;i < favoriteColor.Length;i++)
             {
-                favoriteColor[i] = ShowColor(anketa.name,anketa.age);
+                favoriteColor[i] = GetColor(anketa.name,anketa.age);
             }
+            ShowColors(null);
         }
     }
 }
