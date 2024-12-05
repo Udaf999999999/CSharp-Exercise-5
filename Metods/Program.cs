@@ -2,18 +2,59 @@
 {
     internal class Program
     {
+        static string ShowColor()
+        {
+            Console.WriteLine("Напишите свой любимый цвет на английском с маленькой буквы");
+            var color = Console.ReadLine();
+
+            switch (color)
+            {
+                case "red":
+                    Console.BackgroundColor = ConsoleColor.Red;
+                    Console.ForegroundColor = ConsoleColor.Black;
+
+                    Console.WriteLine("Your color is red!");
+                    break;
+
+                case "green":
+                    Console.BackgroundColor = ConsoleColor.Green;
+                    Console.ForegroundColor = ConsoleColor.Black;
+
+                    Console.WriteLine("Your color is green!");
+                    break;
+                case "cyan":
+                    Console.BackgroundColor = ConsoleColor.Cyan;
+                    Console.ForegroundColor = ConsoleColor.Black;
+
+                    Console.WriteLine("Your color is cyan!");
+                    break;
+                default:
+                    Console.BackgroundColor = ConsoleColor.Yellow;
+                    Console.ForegroundColor = ConsoleColor.Red;
+
+                    Console.WriteLine("Your color is yellow!");
+                    break;
+            }
+            return color;
+        }
         static void Main(string[] args)
         {
-            (string Name, string[] Dishes) user;
-            Console.WriteLine("Enter your name:");
-            user.Name = Console.ReadLine();
+            //(string Name, string[] Dishes) user;
+            //Console.WriteLine("Enter your name:");
+            //user.Name = Console.ReadLine();
 
-            user.Dishes = new string[5];
+            //user.Dishes = new string[5];
 
-            for (int i = 0; i < user.Dishes.Length; i++)
+            //for (int i = 0; i < user.Dishes.Length; i++)
+            //{
+            //    Console.WriteLine("Write your " + (i + 1) + " favorite dish.");
+            //    user.Dishes[i] = Console.ReadLine();
+            //}
+
+            var array = new string[3];
+            for (int i = 0; i < array.Length; i++)
             {
-                Console.WriteLine("Write your " + (i + 1) + " favorite dish.");
-                user.Dishes[i] = Console.ReadLine();
+                array[i] = ShowColor();
             }
         }
     }
