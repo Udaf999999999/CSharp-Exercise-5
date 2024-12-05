@@ -37,17 +37,32 @@
             }
             return color;
         }
-        static void ShowColors(params string[] favcolors)
+        static void ShowColors(string username, params string[] favcolors)
         {
-            Console.WriteLine("Ваши любимые цвета:");
+            Console.WriteLine(username, ", Ваши любимые цвета:");
             foreach (var color in favcolors)
             {
                 Console.WriteLine(color);
             }
         }
-        static int[] GetArrayFromConsole()
+        static void SortComplexArray(int[,] arr)
         {
-            var result = new int[5];
+            int temp;
+            for (int i = 0; i <= arr.GetUpperBound(0); i++)
+            {
+                for (int j = 0; j <= arr.GetUpperBound(1); j++)
+                    for (int k = j + 1; k <= arr.GetUpperBound(1); k++)
+                        if (arr[i, j] > arr[i, k])
+                        {
+                            temp = arr[i, k];
+                            arr[i, k] = arr[i, j];
+                            arr[i, j] = temp;
+                        }
+            }
+        }
+        static int[] GetArrayFromConsole(int num = 5)
+        {
+            var result = new int[num];
 
             for (int i = 0; i < result.Length; i++)
             {
@@ -61,7 +76,7 @@
         {
             for (int i = 0; i < array.Length; i++)
             {
-                for (int j = i+1; j < array.Length; j++)
+                for (int j = i + 1; j < array.Length; j++)
                 {
                     if (array[i] > array[j])
                     {
@@ -73,9 +88,11 @@
             }
             return array;
         }
-        static void ShowArray(int[] array)
+        static void ShowArray(int[] array, bool isSorted = false)
         {
-            foreach (int i in array)
+            int[] tempArray = array;
+            if(isSorted) tempArray = SortArray(tempArray);
+            foreach (int i in tempArray)
             {
                 Console.Write(i + " ");
             }
@@ -94,23 +111,35 @@
             //    user.Dishes[i] = Console.ReadLine();
             //}
 
-            (string name, int age) anketa;
+            //(string name, int age) anketa;
 
-            Console.Write("Введите имя: ");
-            anketa.name = Console.ReadLine();
-            Console.Write("Введите возраст с цифрами: ");
-            anketa.age = Convert.ToInt32(Console.ReadLine());
+            //Console.Write("Введите имя: ");
+            //anketa.name = Console.ReadLine();
+            //Console.Write("Введите возраст с цифрами: ");
+            //anketa.age = Convert.ToInt32(Console.ReadLine());
 
-            Console.WriteLine("Ваше имя: {0}", anketa.name);
-            Console.WriteLine("Ваш возраст: {0}", anketa.age);
+            //Console.WriteLine("Ваше имя: {0}", anketa.name);
+            //Console.WriteLine("Ваш возраст: {0}", anketa.age);
 
-            var favoriteColor = new string[3];
+            //var favoriteColor = new string[3];
 
-            for (int i = 0;i < favoriteColor.Length;i++)
-            {
-                favoriteColor[i] = GetColor(anketa.name,anketa.age);
-            }
-            ShowColors(null);
+            //for (int i = 0; i < favoriteColor.Length; i++)
+            //{
+            //    favoriteColor[i] = GetColor(anketa.name, anketa.age);
+            //}
+            //ShowColors(anketa.name, favoriteColor);
+
+            //int[,] arr =
+            //{
+            //    { - 5, 6, 9, 1, 2, -3},
+            //    { - 8, 8, 1, 1, 2, -3}
+            //};
+
+            //SortComplexArray(arr);
+
+            var arr = GetArrayFromConsole();
+            ShowArray(arr, true);
+            ShowArray(arr, false);
         }
     }
 }
