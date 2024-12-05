@@ -91,11 +91,21 @@
         static void ShowArray(int[] array, bool isSorted = false)
         {
             int[] tempArray = array;
-            if(isSorted) tempArray = SortArray(tempArray);
+            if (isSorted) tempArray = SortArray(tempArray);
             foreach (int i in tempArray)
             {
                 Console.Write(i + " ");
             }
+        }
+        static void GetName(string name)
+        {
+            Console.WriteLine("Введите имя");
+            name = Console.ReadLine();
+
+        }
+        static void ChangeAge(int age)
+        {
+            age = 10;
         }
         static void Main(string[] args)
         {
@@ -137,9 +147,12 @@
 
             //SortComplexArray(arr);
 
-            var arr = GetArrayFromConsole();
-            ShowArray(arr, true);
-            ShowArray(arr, false);
+            //var arr = GetArrayFromConsole();
+            //int[] arr = { 3, 6, -2, 5 };
+            //ShowArray(arr, false);
+            //ShowArray(arr, false);
+
+
         }
     }
 }
