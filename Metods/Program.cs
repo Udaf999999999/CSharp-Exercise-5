@@ -60,6 +60,12 @@
                         }
             }
         }
+        public int SumNumbers(ref int num1, in int num2,out int num3, int num4)
+        {
+            num1 = 5;
+            num3 = num1 + num2;
+            return 3;
+        }
         static int[] GetArrayFromConsole(int num = 5)
         {
             var result = new int[num];
@@ -102,6 +108,10 @@
             Console.WriteLine("Введите имя");
             name = Console.ReadLine();
 
+        }
+        static void ChangeName(string name)
+        {
+            name = "ds";
         }
         static void ChangeAge(int age)
         {
@@ -146,12 +156,12 @@
             //};
 
             //SortComplexArray(arr);
-
-            //var arr = GetArrayFromConsole();
+            int lenght = 5;
+            var arr = GetArrayFromConsole(lenght);
             //int[] arr = { 3, 6, -2, 5 };
-            //ShowArray(arr, false);
-            //ShowArray(arr, false);
-
+            ShowArray(arr, true);
+            Console.WriteLine();
+            ShowArray(arr, false);
 
         }
     }
