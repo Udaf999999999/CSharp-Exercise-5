@@ -2,6 +2,7 @@
 {
     internal class Program
     {
+        int val = 8;
         static string GetColor(string username, int userage)
         {
             Console.WriteLine("{0}, {1} лет\nНапишите свой любимый цвет", username, userage);
@@ -60,7 +61,7 @@
                         }
             }
         }
-        public int SumNumbers(ref int num1, in int num2,out int num3, int num4)
+        public int SumNumbers(ref int num1, in int num2, out int num3, int num4)
         {
             num1 = 5;
             num3 = num1 + num2;
@@ -78,7 +79,12 @@
 
             return result;
         }
-        static int[] SortArray(int[] array)
+        static void SortArray(in int[] array, out int[] arrayDiscend, out int[] arrayAscend)
+        {
+            arrayDiscend = SortArrayDesc(array);
+            arrayAscend = SortArrayAsc(array);
+        }
+        public static int[] SortArrayDesc(in int[] array)
         {
             for (int i = 0; i < array.Length; i++)
             {
@@ -94,11 +100,25 @@
             }
             return array;
         }
+        public static int[] SortArrayAsc(in int[] array)
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                for (int j = i + 1; j < array.Length; j++)
+                {
+                    if (array[i] < array[j])
+                    {
+                        int temp = array[i];
+                        array[i] = array[j];
+                        array[j] = temp;
+                    }
+                }
+            }
+            return array;
+        }
         static void ShowArray(int[] array, bool isSorted = false)
         {
-            int[] tempArray = array;
-            if (isSorted) tempArray = SortArray(tempArray);
-            foreach (int i in tempArray)
+            foreach (int i in array)
             {
                 Console.Write(i + " ");
             }
@@ -116,6 +136,20 @@
         static void ChangeAge(int age)
         {
             age = 10;
+        }
+        static void Echo(string saidworld, int deep)
+        {
+            var modif = saidworld;
+            if (modif.Length > 2)
+            {
+                modif = modif.Remove(0, 2);
+            }
+            Console.WriteLine("..." + modif);
+
+            if (deep > 1)
+            {
+                Echo(modif, deep - 1);
+            }
         }
         static void Main(string[] args)
         {
@@ -156,12 +190,24 @@
             //};
 
             //SortComplexArray(arr);
-            int lenght = 5;
-            var arr = GetArrayFromConsole(lenght);
-            //int[] arr = { 3, 6, -2, 5 };
-            ShowArray(arr, true);
-            Console.WriteLine();
-            ShowArray(arr, false);
+            //int lenght = 5;
+            ////var arr = GetArrayFromConsole(lenght);
+            //int[] arr = { -5, 6, 9, 1, 2, -3 };
+            //int[] disc;
+            //int[] asce;
+            //SortArray(arr,out disc,out asce);
+            ////int[] arr = { 3, 6, -2, 5 };
+            //ShowArray(arr, true);
+            //Console.WriteLine();
+            //ShowArray(disc, true);
+            //Console.WriteLine();
+            //ShowArray(asce, false);
+
+            var str = "string";
+
+            var deep = 3;
+
+            Echo(str, deep);
 
         }
     }
