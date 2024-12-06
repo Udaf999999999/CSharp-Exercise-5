@@ -144,11 +144,39 @@
             {
                 modif = modif.Remove(0, 2);
             }
+
+            Console.BackgroundColor = (ConsoleColor)deep;
             Console.WriteLine("..." + modif);
 
             if (deep > 1)
             {
                 Echo(modif, deep - 1);
+            }
+        }
+        public static decimal Factorial(int number)
+        {
+            if (number <= 0)
+            {
+                return 1;
+            }
+            else
+            {
+                return number * Factorial(number - 1);
+            }
+        }
+        private static int PowerUp(int N, byte pow)
+        {
+            if (pow <= 0)
+            {
+                return 1;
+            }
+            else if (pow == 1)
+            {
+                return N;
+            }
+            else
+            {
+                return N * PowerUp(N,(byte) (pow - 1));
             }
         }
         static void Main(string[] args)
@@ -203,12 +231,11 @@
             //Console.WriteLine();
             //ShowArray(asce, false);
 
-            var str = "string";
-
-            var deep = 3;
-
-            Echo(str, deep);
-
+            //var str = "string sadg sdf g";
+            //var deep = 8;
+            //Echo(str, deep);
+            Console.WriteLine(PowerUp(3,4));
+            
         }
     }
 }
